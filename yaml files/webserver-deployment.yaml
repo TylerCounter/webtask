@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: webserver
+  name: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - image: serkanorduluoglu/yeniimage
+        name: webserver
+        ports:
+        - containerPort: 80
+        env:
+         - name: MYSQL_DATABASE_HOST
+           value: "mysql-service"
+         - name: MYSQL_PASSWORD
+           value: "1234"
+         - name: MYSQL_DATABASE
+           value: "webtask"
+         - name: MYSQL_USER
+           value: "serkan"
+            
